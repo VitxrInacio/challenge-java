@@ -13,7 +13,7 @@ public class Curso extends Conteudo {
 
     @Override
     public double cacularXp() {
-        // TODO Auto-generated method stub
+    
 
         return XP_PADRAO * cargaHoraria; 
     }

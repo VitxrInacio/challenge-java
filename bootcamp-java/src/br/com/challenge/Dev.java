@@ -5,16 +5,22 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public class Dev {
+public class Dev extends Conteudo {
     
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    public void inscreverBootcamp(Bootcamp bootcamp) {
+        this.conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcamp.getDevsInscritos().add(this);
+    }  
     @Override
     public int hashCode() {
         return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
     }
+
+   
 
     @Override
     public boolean equals(Object obj) {
@@ -25,10 +31,7 @@ public class Dev {
        
     }
 
-    public void inscreverBootcamp(Bootcamp bootcamp) {
-        this.conteudosInscritos.addAll(bootcamp.getConteudos());
-        bootcamp.getDevsInscritos().add(this);
-    }
+    
 
     public void progredir() {
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
@@ -69,6 +72,11 @@ public class Dev {
 
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+    @Override
+    public double cacularXp() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 
